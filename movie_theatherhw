@@ -1,0 +1,115 @@
+CREATE TABLE Customer(
+	customer_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	billing_infor VARCHAR(16)
+);
+
+----Movies table 
+CREATE TABLE Movies(
+	movid_id SERIAL PRIMARY KEY,
+	run_time INTEGER NOT NULL,
+	for_sale INTEGER NOT NULL,
+	ticket_price NUMERIC(4,2)
+);
+
+---Concession table 
+CREATE TABLE Concession(
+	snack SERIAL PRIMARY KEY,
+	snack_price NUMERIC(4,2),
+	stock INTEGER NOT NULL
+	----need to add brand name
+);
+--- c_order 
+CREATE TABLE c_order(
+	receipt_no SERIAL PRIMARY KEY,
+	order_date DATE DEFAULT CURRENT_DATE,
+	ticket_price INTEGER NOT NULL,----need to  change to numeric -NEED TO ADD FOREIGN KEY 
+	snack_price INTEGER NOT NULL, ----need to change to numeric-NEED TO ADD FOREIGN KEY
+	cutomer_id INTEGER NOT NULL ----forgot to add FOREIGN KEY--also typo 
+		
+);
+
+SELECT *
+---FROM customer
+--FROM movies
+----FROM concession
+--FROM c_order
+--------------------------------------
+--INSERT INFO 
+INSERT INTO Customer(
+	customer_id,
+	first_name,
+	last_name,
+	billing_infor
+)VALUES(
+	1,
+	'Ronald',
+	'Ramirez',
+	'xxxxxxxxxxx1234'
+);
+
+--movies
+INSERT INTO movies(
+	movid_id,
+	run_time,
+	for_sale,
+	ticket_price	
+)VALUES(
+	1,
+	132,
+	70,
+	15.50
+);
+
+---Concession
+INSERT INTO concession(
+	snack,
+	snack_price,
+	stock
+)VALUES(
+	1,
+	8.10,
+	50
+);
+	
+SELECT*
+FROM concession
+
+--- C_order
+INSERT INTO c_order(
+	receipt_no,
+	order_date,
+	ticket_price,
+	snack_price,
+	cutomer_id --typo customer
+)VALUES (
+	001,
+	CURRENT_DATE,
+	15.50,
+	8.10,
+	1
+);
+
+--------ALTERATIONS
+ALTER TABLE concession
+ADD brand_name VARCHAR(50);
+
+INSERT INTO concession(
+	snack_price,
+	stock,
+	brand_name
+)VALUES(
+	8.10,
+	50,
+	'popcorn'	
+);
+--SELECT *
+--FROM concession
+
+--DELETE FROM c_order
+--WHERE cutomer_id =1;--deleted all information in table
+
+
+SELECT *
+FROM c_order
